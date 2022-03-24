@@ -15,6 +15,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Header from '../component/header';
 import Footer from '../component/footer';
 import { login } from './config';
+import { useToasts } from 'react-toast-notifications';
+import { useRouter } from 'next/router';
 
 // function Copyright(props) {
 //   return (
@@ -32,6 +34,8 @@ import { login } from './config';
 const theme = createTheme();
 
 export default function SignIn() {
+    const { addToast } = useToasts();
+    const router = useRouter();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -47,7 +51,8 @@ export default function SignIn() {
         body:JSON.stringify(va),
     }) .then((response) => response.text())
     .then((va) => {
-        addToast('Registered Successfully', { appearance: 'success' ,autoDismiss: true});
+        console.log(va,"dddddwww")
+        addToast('Login Successfully', { appearance: 'success' ,autoDismiss: true});
         router.push({ pathname: '/'});
     })
     .catch((error) => {
@@ -129,3 +134,6 @@ export default function SignIn() {
     </>
   );
 }
+
+
+
