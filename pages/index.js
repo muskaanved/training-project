@@ -7,6 +7,7 @@ import News from '../component/news'
 import Footer from '../component/footer'
 import Banner from '../component/banner'
 
+
 export default function Home() {
   return (
     <div className={styles.container}>
@@ -16,6 +17,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>     
       <Header/>
+      
       <Banner/>
       <Courses/>
       <News/>

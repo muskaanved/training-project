@@ -14,6 +14,9 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Header from '../component/header';
 import Footer from '../component/footer';
+import { useToasts } from 'react-toast-notifications';
+import { useRouter } from 'next/router';
+import { register } from './config';
 
 // function Copyright(props) {
 //   return (
@@ -31,13 +34,34 @@ import Footer from '../component/footer';
 const theme = createTheme();
 
 export default function SignUp() {
+    const { addToast } = useToasts();
+    const router = useRouter();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
+    const valuedata = ({
+        roleId:'user',
+        firstName:data.get('firstName'),
+        lastName:data.get('lastName'),
+        email: data.get('email'),
+        phone:"9876543210",
+        password: data.get('password'),
     });
+    fetch(register,{
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json",
+          },
+        body:JSON.stringify(valuedata),
+    }) .then((response) => response.text())
+    .then((valuedata) => {
+        addToast('Registered Successfully', { appearance: 'success' ,autoDismiss: true});
+        router.push({ pathname: '/'});
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+
   };
 
   return (

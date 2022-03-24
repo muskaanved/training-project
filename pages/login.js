@@ -14,6 +14,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Header from '../component/header';
 import Footer from '../component/footer';
+import { login } from './config';
 
 // function Copyright(props) {
 //   return (
@@ -34,9 +35,23 @@ export default function SignIn() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
+    const va = {
+       email: data.get('email'),
+       password: data.get('password'),
+     };
+    fetch(login,{
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json",
+          },
+        body:JSON.stringify(va),
+    }) .then((response) => response.text())
+    .then((va) => {
+        addToast('Registered Successfully', { appearance: 'success' ,autoDismiss: true});
+        router.push({ pathname: '/'});
+    })
+    .catch((error) => {
+      console.error("Error:", error);
     });
   };
 
