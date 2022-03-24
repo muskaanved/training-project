@@ -14,8 +14,6 @@ import MenuItem from '@mui/material/MenuItem';
 import SearchIcon from '@mui/icons-material/Search';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
-// import Paper from 'material-ui/Paper';
-// import Image from '../public/images/3684,jpg';
 
 const pages = ['Home', 'Self Learning', 'News', 'Contact'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -83,10 +81,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-
   return (
     <>
-    <AppBar position="static">
+    <AppBar position="static" sx={{ bgcolor: "#0a203f" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -95,7 +92,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
             component="div"
             sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
           >
-            HELLO
+            LOGO
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -148,6 +145,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
                 key={page}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
+                href={page == "Home" || page == "Self Learning" ?'/':'notfound'}
               >
                 {page}
               </Button>
@@ -166,7 +164,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
           </Box>
            <Box sx={{ flexGrow: 0 }}>
            <Button
-                
+                href='../login'
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
@@ -204,9 +202,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
         </Toolbar>
       </Container>
     </AppBar>
-    <Box sx={{ flexGrow: 0.1, display: { xs: 'none', md: 'flex' } }}>
-    <img src="images/3684.jpg" height={'500px'} width={'100%'} ></img>
-    </Box>
+   
     </>
   );
 };

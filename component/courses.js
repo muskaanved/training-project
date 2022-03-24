@@ -11,8 +11,7 @@ import AppBar from '@mui/material/AppBar';
 export default function Courses() {
   return (
     <>
-    <AppBar position="static" margin="1rem">
-    
+    <AppBar position="static" margin="1rem" sx={{ bgcolor: "#0a203f" ,alignItems:"center" ,margin:"28px 0px"}}>
     <Typography
             variant="h6"
             noWrap
@@ -23,7 +22,7 @@ export default function Courses() {
           </Typography>
        
     </AppBar>
-    <Grid container spacing={2} margin="1rem">
+    <Grid container spacing={2}>
       <Grid item xs={4}>
     <Card sx={{ maxWidth: 400 }}>
       <CardMedia
@@ -42,7 +41,7 @@ export default function Courses() {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">ENROLL</Button>
+        <Button size="large" variant="contained" sx={{width:"100%",bgcolor: "#e42a00"}}>ENROLL</Button>
       </CardActions>
     </Card>
     </Grid>
@@ -64,7 +63,7 @@ export default function Courses() {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">ENROLL</Button>
+        <Button size="large" variant="contained" sx={{width:"100%",bgcolor: "#e42a00"}}>ENROLL</Button>
       </CardActions>
     </Card>
     </Grid>
@@ -86,7 +85,7 @@ export default function Courses() {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" >ENROLL</Button>
+        <Button size="large" variant="contained" sx={{width:"100%",bgcolor: "#e42a00"}}>ENROLL</Button>
       </CardActions>
     </Card>
     </Grid>

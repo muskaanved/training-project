@@ -11,7 +11,7 @@ import AppBar from '@mui/material/AppBar';
 export default function News() {
   return (
     <>
-    <AppBar position="static" margin="1rem">
+    <AppBar position="static" margin="1rem" sx={{ bgcolor: "#0a203f", alignItems:"center",margin:"28px 0px" }}>
     
     <Typography
             variant="h6"
@@ -23,7 +23,7 @@ export default function News() {
           </Typography>
        
     </AppBar>
-    <Grid container spacing={2} margin="1rem">
+    <Grid container spacing={2} >
       <Grid item xs={4}>
     <Card sx={{ maxWidth: 400 }}>
       <CardMedia
