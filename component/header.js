@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useEffect} from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -14,13 +14,18 @@ import MenuItem from '@mui/material/MenuItem';
 import SearchIcon from '@mui/icons-material/Search';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
+import { useRouter } from 'next/router';
+import { useToasts } from 'react-toast-notifications';
+import Link from 'next/link';
 
-const pages = ['Home', 'Self Learning', 'News', 'Contact'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+
+const pages = ['Home', 'Self Learning', 'News', 'Contact','Message'];
+const settings = ['Profile', 'Dashboard'];
 
 const Header = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [isLogged, setisLogged] = React.useState(false);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -37,7 +42,28 @@ const Header = () => {
     setAnchorElUser(null);
   };
 
+  const router = useRouter();
+  const { addToast } = useToasts();
 
+  useEffect (() => {
+    
+    checkStorage();
+    return () => {};
+  }, [isLogged]);
+  function checkStorage() {
+    if (localStorage.getItem("token")) {
+      
+      setisLogged(true);
+    } else {
+      setisLogged(false);
+    }
+  }
+  const logout = () => {
+    localStorage.removeItem("token");
+    setisLogged(false);
+    router.push("/");
+    addToast('Logout Successfully', { appearance: 'success' ,autoDismiss: true});
+  };
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -63,6 +89,7 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'center',
 }));
+
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: 'inherit',
@@ -162,7 +189,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
             />
           </Search>
           </Box>
-           <Box sx={{ flexGrow: 0 }}>
+           <Box sx={{ display: 'flex' }}>
+           {!isLogged ? (<>
            <Button
                 href='../login'
                 onClick={handleCloseNavMenu}
@@ -170,12 +198,21 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
               >
              Login
           </Button>
-          
-           {/* <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+        </>
+          ):(
+            <>
+            <Button
+                onClick={logout}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+             Logout
+          </Button>
+            
+           <Tooltip title="Open settings">
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 1 }}>
+                <Avatar alt={localStorage.getItem("firstName")} src="n" sx={{ bgcolor:'#e12900'}}/>
               </IconButton>
-            </Tooltip>
+            </Tooltip>         
             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"
@@ -194,10 +231,14 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                  <Typography textAlign="center">
+                    <Link href={setting === "Profile" ? "/profile" : "notfound"}>{setting}
+                    </Link></Typography>
                 </MenuItem>
               ))}
-            </Menu> */}
+            </Menu>
+            </>
+             )}
           </Box> 
         </Toolbar>
       </Container>

@@ -1,10 +1,5 @@
 {
   "/_app": "pages/_app.js",
-  "/api/hello": "pages/api/hello.js",
-  "/config": "pages/config.js",
-  "/": "pages/index.js",
-  "/login": "pages/login.js",
-  "/signup": "pages/signup.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js"
 }

@@ -39,29 +39,36 @@ export default function SignUp() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const valuedata = ({
+    const valuedata = {
         roleId:'user',
         firstName:data.get('firstName'),
         lastName:data.get('lastName'),
         email: data.get('email'),
-        phone:"9876543210",
+        phone:data.get('phone'),
         password: data.get('password'),
-    });
+    };
     fetch(`http://94.237.3.78:4000/api/createUser`,{
-        method: 'POST',
+        method: "POST",
         headers: {
             "Content-Type": "application/json",
           },
         body:JSON.stringify(valuedata),
     }) .then((response) => response.text())
     .then((valuedata) => {
+      if(valuedata){
+       
+        if(valuedata.message === "please Insert Unique Data"){
+          addToast('Data already exist', { appearance: 'error' ,autoDismiss: true});
+        }
+        else{
         addToast('Registered Successfully', { appearance: 'success' ,autoDismiss: true});
         router.push({ pathname: '/'});
+        }
+      }
     })
     .catch((error) => {
       console.error("Error:", error);
     });
-
   };
 
   return (
@@ -105,6 +112,17 @@ export default function SignUp() {
                   label="Last Name"
                   name="lastName"
                   autoComplete="family-name"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="phone"
+                  label="Phone"
+                  type="phone"
+                  id="phone"
+                  autoComplete="phone"
                 />
               </Grid>
               <Grid item xs={12}>

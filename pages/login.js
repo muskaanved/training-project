@@ -48,16 +48,29 @@ export default function SignIn() {
             "Content-Type": "application/json",
           },
         body:JSON.stringify(va),
-    }) .then((response) => response.text())
-    .then((va) => {
-        console.log(va,"dddddwww")
+    }) .then((response) => {response.json().then((res) => {
+     
+        if(res.message == "user name not found"){
+          addToast('Invalid Email & Password', { appearance: 'error' ,autoDismiss: true});
+        }else if(res.message === "password is incorrect"){
+          addToast('password is incorrect', { appearance: 'error' ,autoDismiss: true});
+        }else if(res.role[0].roleType == "admin"){
+          addToast('you loggedIn as an admin', { appearance: 'error' ,autoDismiss: true});
+        }else{
+        localStorage.setItem("token", res.token);
+        localStorage.setItem("firstName", res.firstName);
+        localStorage.setItem("id", res._id);
+        localStorage.getItem("token");
         addToast('Login Successfully', { appearance: 'success' ,autoDismiss: true});
         router.push({ pathname: '/'});
-    })
+        }
+    })  
+  })
     .catch((error) => {
       console.error("Error:", error);
     });
   };
+  
 
   return (
       <>

@@ -19,7 +19,7 @@ export default function News() {
             component="div"
             sx={{ m: 2, display: { xs: 'none', md: 'flex' }}}
           >
-            News
+            Latest News
           </Typography>
        
     </AppBar>
