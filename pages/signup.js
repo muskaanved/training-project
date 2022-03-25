@@ -16,7 +16,7 @@ import Header from '../component/header';
 import Footer from '../component/footer';
 import { useToasts } from 'react-toast-notifications';
 import { useRouter } from 'next/router';
-import { register } from './config';
+
 
 // function Copyright(props) {
 //   return (
@@ -47,7 +47,7 @@ export default function SignUp() {
         phone:"9876543210",
         password: data.get('password'),
     });
-    fetch(register,{
+    fetch(`http://94.237.3.78:4000/api/createUser`,{
         method: 'POST',
         headers: {
             "Content-Type": "application/json",

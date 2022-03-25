@@ -14,7 +14,6 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Header from '../component/header';
 import Footer from '../component/footer';
-import { login } from './config';
 import { useToasts } from 'react-toast-notifications';
 import { useRouter } from 'next/router';
 
@@ -43,7 +42,7 @@ export default function SignIn() {
        email: data.get('email'),
        password: data.get('password'),
      };
-    fetch(login,{
+    fetch(`http://94.237.3.78:4000/api/login`,{
         method: 'POST',
         headers: {
             "Content-Type": "application/json",
