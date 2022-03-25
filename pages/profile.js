@@ -16,13 +16,13 @@ import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
 
 const theme = createTheme();
-const id = localStorage.getItem("id");
+// const id = localStorage.getItem("id");
 
 export default function Profile() {
  
     const [profile, setProfile] = useState([]);
     useEffect(()=>{
-      fetch('http://94.237.3.78:4000/api/user_Detail/'+id).then((a)=>{
+      fetch('http://94.237.3.78:4000/api/user_Detail/').then((a)=>{
         return a.json();
       })
       .then((data)=>{

@@ -80,8 +80,8 @@ var IconButton_default = /*#__PURE__*/__webpack_require__.n(IconButton_);
 
 
 const theme = (0,styles_.createTheme)();
+const id = localStorage.getItem("id");
 function Profile() {
-    const id = localStorage.getItem("id");
     const { 0: profile , 1: setProfile  } = (0,external_react_.useState)([]);
     (0,external_react_.useEffect)(()=>{
         fetch('http://94.237.3.78:4000/api/user_Detail/' + id).then((a)=>{
