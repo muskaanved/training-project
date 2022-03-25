@@ -19,8 +19,8 @@ const theme = createTheme();
 
 export default function Profile() {
  
-    const [profile, setProfile] = useState([]);
     const id = localStorage.getItem("id");
+    const [profile, setProfile] = useState([]);
     useEffect(()=>{
       fetch('http://94.237.3.78:4000/api/user_Detail/'+id).then((a)=>{
         return a.json();
