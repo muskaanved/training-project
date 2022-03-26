@@ -232,7 +232,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">
-                    <Link href={setting === "Profile" ? "/profile" : "notfound"}>{setting}
+                    <Link href={setting === "Profile" ? "/profile" : "/dashboard"}>{setting}
                     </Link></Typography>
                 </MenuItem>
               ))}

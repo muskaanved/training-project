@@ -1,11 +1,11 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Header from '../component/header'
 import Courses from '../component/courses'
 import News from '../component/news'
 import Footer from '../component/footer'
 import Banner from '../component/banner'
+
 
 
 export default function Home() {
