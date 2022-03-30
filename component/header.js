@@ -19,7 +19,7 @@ import { useToasts } from 'react-toast-notifications';
 import Link from 'next/link';
 
 
-const pages = ['Home', 'Self Learning', 'News', 'Contact','Message'];
+const pages = ['Home', 'Self Learning', 'News', 'Contact','Message','Capture'];
 const settings = ['Profile', 'Dashboard'];
 
 const Header = () => {
@@ -172,7 +172,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
                 key={page}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
-                href={page == "Home" || page == "Self Learning" ?'/':'notfound'}
+                href={page == "Home" || page == "Self Learning" ?'/':page == "Capture"? '/Sscapture':'notfound'}
               >
                 {page}
               </Button>
