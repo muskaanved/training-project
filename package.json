@@ -26,6 +26,7 @@
     "react-router-dom": "^6.2.2",
     "react-toast-notifications": "^2.5.1",
     "styled-components": "^5.3.3",
+    "use-react-screenshot": "^3.0.0",
     "use-screenshot-hook": "^1.0.2",
     "vercel": "^24.0.1"
   },
